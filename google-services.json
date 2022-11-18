@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "481267589229",
+    "firebase_url": "https://atrio-acd03-default-rtdb.firebaseio.com",
+    "project_id": "atrio-acd03",
+    "storage_bucket": "atrio-acd03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481267589229:android:84a31dca653949ac1f5f64",
+        "android_client_info": {
+          "package_name": "com.mypet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481267589229-qkg68d1hijnbtl6m61nnphnjc4dqntk2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG0BsPRhwaDv8VrwmIxNtPoW9qpSrNQ0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481267589229-qkg68d1hijnbtl6m61nnphnjc4dqntk2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "481267589229-5eruta4rnmsqlptcjo1do3m1stblqjiq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mypetios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

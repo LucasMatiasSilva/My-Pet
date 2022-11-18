@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>481267589229-5eruta4rnmsqlptcjo1do3m1stblqjiq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.481267589229-5eruta4rnmsqlptcjo1do3m1stblqjiq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCU_y35O0y334u2v-rEHHLe6kD1kqmrJrg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>481267589229</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mypetios</string>
+	<key>PROJECT_ID</key>
+	<string>atrio-acd03</string>
+	<key>STORAGE_BUCKET</key>
+	<string>atrio-acd03.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:481267589229:ios:481adfb83127402b1f5f64</string>
+	<key>DATABASE_URL</key>
+	<string>https://atrio-acd03-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
