@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as animatable from 'react-native-animatable'
 import { Ionicons } from '@expo/vector-icons';
 import { firebase } from '../../firebase/config'
-import { Alert } from 'react-native';
 
 export default function SingIn() {
 
@@ -40,7 +39,7 @@ export default function SingIn() {
                             return;
                         }
                         const user = firestoreDocument.data()
-                        navigation.navigate('Home', {user})
+                        navigation.navigate('TimeList', {user})
                     })
                     .catch(error => {
                         alert(error)
@@ -49,6 +48,38 @@ export default function SingIn() {
             .catch(error => {
                 alert(error)
             })
+    }
+
+    async function forgotPassword(){
+        if(email.length == 0){
+            Alert.alert(
+                'Ops!',
+                    'Digite seu email para que possa receber o email e criar uma nova senha',
+                    [
+                        {text: 'OK', 
+                        onPress: () => console.log('Ok Pressed') 
+                        }
+                    ]
+            )
+        }
+        await firebase.auth().sendPasswordResetEmail(email)
+            .then(() => {
+                Alert.alert(
+                    'Crie sua nova senha!',
+                            'Verifique seu Email para criar uma nova Senha!',
+                            [
+                              {text: 'OK', 
+                              onPress: () => console.log('Ok Pressed') 
+                              }
+                            ]
+                )
+            })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+        });
     }
 
     return (
@@ -83,11 +114,21 @@ export default function SingIn() {
                         }
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.button}
-                onPress={() => onLoginPress()}>
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={() => onLoginPress()}>
                     <Text style={styles.buttonText}>Acessar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonRegister}
+
+                <TouchableOpacity
+                    style={styles.buttonReset}
+                    onPress={() => forgotPassword()}
+                    >
+                    <Text style={styles.resetText}>Esqueci minha Senha</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    style={styles.buttonRegister}
                     onPress={() => navigation.navigate('SingUp')}
                 >
                     <Text style={styles.registerText}>Não tem uma conta?, Crie agora!</Text>
@@ -163,12 +204,20 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
+    buttonReset: {
+        marginTop: 14,
+        alignSelf: 'center'
+    },
     buttonRegister: {
         marginTop: 14,
         alignSelf: 'center'
     },
-    registerText: {
+    resetText: {
         color: '#262626',
         fontSize: 14.5
+    },
+    registerText: {
+        color: '#323232',
+        fontSize: 15
     }
 })

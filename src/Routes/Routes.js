@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Welcome from '../pages/welcome'
-import SingIn from '../pages/singIn';
-import SingUp from '../pages/singUp';
-import Home from '../pages/home'
+import Welcome from '../pages/Welcome/Welcome'
+import SingIn from '../pages/SingIn/SingIn';
+import SingUp from '../pages/SingUp/SingUp';
+import TimeList from '../pages/TimeList/TimeList';
+import AddTime from '../pages/NewTime/NewTime';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,8 +26,13 @@ export default function Routes(){
             options={{ headerShown: false }}
             />
             <Stack.Screen 
-            name="Home"
-            component={Home}
+            name="TimeList"
+            component={TimeList}
+            options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+            name="NewTime"
+            component={AddTime}
             options={{ headerShown: false }}
             />
         </Stack.Navigator>

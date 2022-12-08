@@ -39,7 +39,7 @@ export default function SingUp() {
                     email
                 };
                 const usersRef = firebase.firestore().collection('users')
-                usersRef
+                usersRef    
                     .doc(uid)
                     .set(data)
                     .then(() => {

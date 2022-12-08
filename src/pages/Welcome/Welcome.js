@@ -18,14 +18,14 @@ export default function Welcome(){
             <View style={styles.containerLogo}>
                 <animatable.Image
                 animation="flipInY"
-                source={require('../../assets/MyPetLogo.png')} /* Onde está localizada a imagem */
+                source={require('../../assets/MyPetLogo.png')}
                 style={{ width: '100%' }}
                 resizeMode="contain"
                 />
             </View>
             <animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
                 <Text style={styles.title}> Seu Bichinho merece o melhor! </Text>
-                <Text style={styles.text}>Faça Login para continuar</Text>
+                <Text style={styles.text}>Cadastre, Gerencie, Ame! </Text>
 
                 <TouchableOpacity 
                 style={styles.button}
@@ -58,15 +58,18 @@ const styles = StyleSheet.create({
         paddingEnd: '5%'
     },
     title: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: 'bold',
         marginTop: 28,
         marginBottom: 12,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     text:{
-        color: '#8C756C',
-        alignSelf: 'center'
+        color: '#323232',
+        alignSelf: 'center',
+        justifyContent: 'center'
     },
     button: {
         position: 'absolute',

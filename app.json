@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mypet",
+    "name": "My Pet",
     "slug": "mypet",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#323232"
-      }
+      },
+      "package": "com.mypet"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4309dc8b-4998-4e0d-91b0-bf5695804e59"
+      }
     }
   }
 }
