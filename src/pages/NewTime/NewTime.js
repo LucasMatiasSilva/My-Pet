@@ -3,9 +3,8 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'reac
 import { database, firebase } from '../../firebase/config'
 import * as animatable from 'react-native-animatable';
 
-export default function NewTime({ navigation, route}) {
-    const [description, setDescription] = useState(route.params.description);
-    const idTime = route.params.id
+export default function NewTime({ navigation }) {
+    const [description, setDescription] = useState(null)
 
     function addtime() {
         if (!description || description.length == 0) {
@@ -22,7 +21,7 @@ export default function NewTime({ navigation, route}) {
 
             return;
         }
-        database.collection(route.params.idUser).add({
+        database.collection('time').add({
             description: description,
             status: false
         })

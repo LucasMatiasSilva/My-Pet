@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
 import * as animatable from 'react-native-animatable';
-import { database, firebase } from '../../firebase/config';
+import { database } from '../../firebase/config';
 import { Ionicons } from '@expo/vector-icons';
 
 
-export default function TimeList({ navigation, route}) {
+export default function TimeList({ navigation }) {
     const [time, setTime] = useState([])
 
     function deleteTime(id) {
         database
-            .collection(route.params.idUser)
+            .collection('time')
             .doc(id)
             .delete();
 
@@ -27,7 +27,7 @@ export default function TimeList({ navigation, route}) {
 
     useEffect(() => {
         database
-            .collection(route.params.idUser)
+            .collection('time')
             .onSnapshot((response) => {
                 const list = []
                 response.forEach((doc) => {
@@ -83,7 +83,7 @@ export default function TimeList({ navigation, route}) {
                 />
                 <TouchableOpacity
                     style={styles.buttonNewTime}
-                    onPress={() => navigation.navigate('NewTime', { idUser: route.params.idUser })}
+                    onPress={() => navigation.navigate('NewTime')}
                 >
                     <Text style={styles.iconButton}> + </Text>
                 </TouchableOpacity>
