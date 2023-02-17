@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'reac
 import { database, firebase } from '../../firebase/config'
 import * as animatable from 'react-native-animatable';
 
-export default function NewTime({ navigation }) {
-    const [description, setDescription] = useState(null);
+export default function NewTime({ navigation, route}) {
+    const [description, setDescription] = useState(route.params.description);
+    const idTime = route.params.id
 
     function addtime() {
         if (!description || description.length == 0) {
@@ -21,8 +22,9 @@ export default function NewTime({ navigation }) {
 
             return;
         }
-        database.collection('time').add({
+        database.collection(route.params.idUser).add({
             description: description,
+            status: false
         })
         Alert.alert(
             'UHUUUUL!',
@@ -34,21 +36,6 @@ export default function NewTime({ navigation }) {
                 }
             ])
         navigation.navigate('TimeList');
-    }
-
-    function release(){
-        database.collection('click').add({
-            click: true
-        })
-        Alert.alert(
-            'UHUUUUL!',
-            'A ração vai cair agora mesmo!',
-            [
-                {
-                    text: 'OK',
-                    onPress: () => console.log('Ok Pressed')
-                }
-            ])
     }
 
     return (
@@ -67,16 +54,6 @@ export default function NewTime({ navigation }) {
                     maxLength={5}
                 />
             </animatable.View>
-            <animatable.View animation="fadeInLeft">
-                <TouchableOpacity 
-                    style={styles.buttonLib}
-                    onPress={() => release()}
-                >
-
-                    <Text style={styles.textLib}> Soltar ração agora </Text>
-
-                </TouchableOpacity>
-            </animatable.View>
             <animatable.Image
                 animation="flipInX"
                 delay={500}
@@ -84,17 +61,16 @@ export default function NewTime({ navigation }) {
                 style={styles.containerImage}
                 resizeMode="contain"
             />
-            <animatable.View animation="fadeInLeft">
-                <TouchableOpacity
+            <TouchableOpacity
                     style={styles.buttonNewTask}
                     onPress={() => {
                         addtime()
+                        
                     }}
                 >
-                    <Text style={styles.textButton}>Salvar Horário!</Text>
+                    <Text style={styles.textButton}>Salvar</Text>
 
                 </TouchableOpacity>
-            </animatable.View>
         </View>
     )
 }
@@ -129,40 +105,25 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#fff'
     },
+    containerImage: {
+        width: '100%',
+        marginTop: 60,
+        top: 25
+    },
     buttonNewTask: {
-        top: -380,
-        backgroundColor: '#9ecb93',
-        borderRadius: 10,
-        paddingVertical: 8,
-        width: '80%',
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center'
+        position: 'absolute',
+        width: 60,
+        height: 60,
+        bottom: 30,
+        left: 20,
+        backgroundColor: "#9ecb93",
+        borderRadius: 50,
+        justifyContent: "center",
+        alignItems: "center"
     },
     textButton: {
         color: "#0a0a0a",
         fontSize: 16,
         fontWeight: "bold",
     },
-    buttonLib: {    
-        top: 90,
-        backgroundColor: '#93a4cc',
-        borderRadius: 50,
-        paddingVertical: 8,
-        width: '60%',
-        alignSelf: 'center',
-        bottom: '15%',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    textLib: {
-        color: "#0a0a0a",
-        fontSize: 15.5,
-        fontWeight: "bold"
-    },
-    containerImage: {
-        width: '100%',
-        marginTop: 100,
-        top: 25
-    }
 });

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
 import * as animatable from 'react-native-animatable';
-import { database } from '../../firebase/config';
+import { database, firebase } from '../../firebase/config';
 import { Ionicons } from '@expo/vector-icons';
 
 
-export default function TimeList({ navigation }) {
+export default function TimeList({ navigation, route}) {
     const [time, setTime] = useState([])
 
-    function deleteTime(description) {
-        database.collection('time').doc(description).delete();
+    function deleteTime(id) {
+        database
+            .collection(route.params.idUser)
+            .doc(id)
+            .delete();
 
         Alert.alert(
             'Excluído!',
@@ -23,23 +26,25 @@ export default function TimeList({ navigation }) {
     }
 
     useEffect(() => {
-        database.collection('time').onSnapshot((response) => {
-            const list = []
-            response.forEach((doc) => {
-                list.push({ ...doc.data(), id: doc.id })
-            });
-            setTime(list)
-        })
+        database
+            .collection(route.params.idUser)
+            .onSnapshot((response) => {
+                const list = []
+                response.forEach((doc) => {
+                    list.push({ ...doc.data(), id: doc.id })
+                });
+                setTime(list)
+            })
     }, [])
 
     return (
         <View style={styles.container}>
             <View style={styles.containerLogo}>
                 <animatable.Image
-                animation="flipInY"
-                source={require('../../assets/TimeList.png')}
-                style={{ width: '100%' }}
-                resizeMode="contain"
+                    animation="flipInY"
+                    source={require('../../assets/TimeList.png')}
+                    style={{ width: '100%' }}
+                    resizeMode="contain"
                 />
             </View>
             <animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
@@ -49,8 +54,8 @@ export default function TimeList({ navigation }) {
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={time}
-                    renderItem={ ( { item } ) => {
-                        return(
+                    renderItem={({ item }) => {
+                        return (
                             <View style={styles.time}>
                                 <TouchableOpacity
                                     style={styles.deleteTime}
@@ -64,20 +69,21 @@ export default function TimeList({ navigation }) {
                                         color='#fff'
                                     >
                                     </Ionicons>
-                                    
+
                                 </TouchableOpacity>
                                 <Text
                                     style={styles.descriptionTime}
                                 >
-                                   Definido para: {item.description} 
+                                    Definido para: {item.description}
                                 </Text>
                             </View>
                         )
                     }}
+                    keyExtractor={(item) => item.id}
                 />
                 <TouchableOpacity
                     style={styles.buttonNewTime}
-                    onPress={() => navigation.navigate('NewTime')}
+                    onPress={() => navigation.navigate('NewTime', { idUser: route.params.idUser })}
                 >
                     <Text style={styles.iconButton}> + </Text>
                 </TouchableOpacity>

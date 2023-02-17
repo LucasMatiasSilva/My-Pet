@@ -39,7 +39,7 @@ export default function SingIn() {
                             return;
                         }
                         const user = firestoreDocument.data()
-                        navigation.navigate('TimeList', {user})
+                        navigation.navigate('TimeList', { idUser: user.uid })
                     })
                     .catch(error => {
                         alert(error)
